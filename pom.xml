@@ -19,7 +19,6 @@
 		<module>marketplace-commons</module>
 		<module>marketplace-repo</module>
 		<module>marketplace-share</module>
-		<module>module-builder-repo</module>
 	</modules>
 
 	<properties>

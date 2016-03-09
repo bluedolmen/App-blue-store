@@ -1,9 +1,0 @@
-<webscript>
-	<shortname>upload-attached</shortname>
-	<description>Get the session attached resources for a module generation</description>
-	<format default="json">argument</format>
-	<authentication>user</authentication>
-	<url>/bluedolmen/mp/module-generator/attached-resources</url>
-	<url>/bluedolmen/mp/module-generator/attached-resources/{classification}</url>
-	<family>bluedolmen</family>  
-</webscript>
