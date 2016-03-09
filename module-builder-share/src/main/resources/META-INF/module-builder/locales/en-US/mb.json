@@ -1,0 +1,19 @@
+{
+
+	"view" : {
+	
+		"new-button" : {
+			"label" : "Module"
+		},
+	
+		"user-button" : {
+			"label" : "Your account"
+		},
+		
+		"form-builder" : {
+			"title" : "Form Builder"
+		}
+	
+	}
+
+}

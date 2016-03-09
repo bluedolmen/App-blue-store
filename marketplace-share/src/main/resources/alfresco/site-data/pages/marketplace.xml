@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<page>
+   <id>marketplace</id>
+   <title>BlueDolmen Marketplace</title>
+   <title-id>page.marketplace.title</title-id>
+   <description>Marketplace provided by the BlueDolmen Framework</description>
+   <description-id>page.marketplace.description</description-id>
+   <template-instance>marketplace</template-instance>
+   <authentication>user</authentication>
+</page>

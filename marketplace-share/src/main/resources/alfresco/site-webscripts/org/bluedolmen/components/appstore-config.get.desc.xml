@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>AppStore Config</shortname>
+  <description>Get the Appstore Config from the Alfresco Repository</description>
+  <url>/components/bluedolmen/appstore/status</url>
+  <format default="html">argument</format>
+  <family>marketplace</family>
+  <authentication>none</authentication>
+</webscript>

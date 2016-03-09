@@ -1,0 +1,61 @@
+{
+	"categories" : {
+		
+		"label" : "Categories",
+		"business-models" : "Business Models"
+	},
+	
+	"modules-view" : {
+		"title" : "Modules"
+	},
+	
+	"operation-label" : {
+		"install" : "install",
+		"uninstall" : "uninstall"
+	},
+	
+	"details" : {
+		"published-on" : "Published on",
+		"modified-on" : "Modified on",
+		"date-format" : "Y-m-d"
+	},
+	
+	"packaging" : {
+		"bluealpaca" : "Business Model"
+	},
+	
+	"window" : {
+		"user-button" : {
+			"label" : "Your account"
+		},
+	
+		"button" : {
+			"launch" : "Start",
+			"close" : "Close"
+		},
+		
+		"long-running" : {
+			"unknown-internal-error" : "Unknown internal error",
+			"state" : {
+				"NOT_YET_STARTED" : "Not Yet Started",
+				"STARTED" : "Started",
+				"UNAVAILABLE" : "Not Available",
+				"PREPARING" : "Preparing for downloading",
+				"DOWNLOADING" : "Downloading the package from the AppStore",
+				"PROCESSING" : "Processing",
+				"FAILURE" : "Failure",
+				"SUCCESS" : "Success"
+			},
+			"about-to" : "About to"
+		},
+	
+		"install" : {
+			"title" : "Installation in progress"
+		},
+		
+		"uninstall" : {
+			"title" : "Uninstallation in progress"
+		}
+	}
+
+}

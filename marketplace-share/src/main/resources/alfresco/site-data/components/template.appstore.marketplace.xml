@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- AppStore -->
+<component>
+   <scope>template</scope>
+   <source-id>marketplace</source-id>
+   <region-id>appstore</region-id>
+   <uri>/components/bluedolmen/appstore/status</uri>
+</component>

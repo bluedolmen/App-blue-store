@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:context="http://www.springframework.org/schema/context"
+      xsi:schemaLocation="
+         http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<bean id="mpmb.ModuleGenerator" class="org.bluedolmen.alfresco.marketplace.modulebuilder.ModuleGenerator">
+		<property name="freeMarkerProcessor" ref="freeMarkerProcessor"></property>
+	</bean>
+	
+	<bean id="webscript.org.bluedolmen.alfresco.marketplace.module-builder.attached-resource.post" parent="webscript" class="org.bluedolmen.alfresco.marketplace.modulebuilder.AttachedResourcePost">
+	</bean>
+
+	<bean id="webscript.org.bluedolmen.alfresco.marketplace.module-builder.attached-resource.delete" parent="webscript" class="org.bluedolmen.alfresco.marketplace.modulebuilder.AttachedResourceDelete">
+	</bean>
+	
+	<bean id="webscript.org.bluedolmen.alfresco.marketplace.module-builder.attached-resources.get" parent="webscript" class="org.bluedolmen.alfresco.marketplace.modulebuilder.AttachedResourcesGet">
+	</bean>
+
+	<bean id="webscript.org.bluedolmen.alfresco.marketplace.module-builder.attached-resource-content.get" parent="webscript.org.alfresco.repository.content.stream" class="org.bluedolmen.alfresco.marketplace.modulebuilder.AttachedResourceContentGet">
+	</bean>
+	
+	<bean id="propertiesEscapeTemplateExtension" parent="baseTemplateImplementation" class="org.bluedolmen.alfresco.marketplace.modulebuilder.PropertiesEscapeTemplateExtension">
+		<property name="extensionName" value="propsescape" />
+	</bean>
+
+</beans>

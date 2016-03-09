@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webscript>
+        <shortname>BlueDolmen MarketPlace Module Deployment</shortname>
+        <format default="json">argument</format>
+        <authentication>admin</authentication>
+        <url>/bluedolmen/mp/install/{moduleId}</url>
+        <url>/bluedolmen/mp/install/{moduleId}/{version}</url>
+        <url>/bluedolmen/mp/deploy/{moduleId}</url>
+        <url>/bluedolmen/mp/deploy/{moduleId}/{version}</url>
+        <family>bluedolmen</family>
+</webscript>

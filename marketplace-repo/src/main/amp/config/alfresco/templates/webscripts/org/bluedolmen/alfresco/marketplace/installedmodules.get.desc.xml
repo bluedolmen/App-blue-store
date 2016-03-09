@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webscript>
+        <shortname>BlueDolmen MarketPlace List Installed Modules</shortname>
+        <format default="json">argument</format>
+        <authentication>user</authentication>
+        <url>/bluedolmen/mp/installed-modules</url>
+        <family>bluedolmen</family>
+</webscript>

@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <description>This module gathers the common material for module management (w.r.t. AppStore) on Alfresco </description>
+  
+  <parent>
+    <groupId>org.bluedolmen.alfresco</groupId>
+	<artifactId>marketplace</artifactId>
+	<version>1.0-alf5.0</version>
+  </parent>
+  
+  <artifactId>marketplace-commons</artifactId>
+  <name>MarketPlace Commons</name>
+  
+  <packaging>amp</packaging>
+  
+  <dependencies>
+
+	<dependency>
+		<groupId>org.bluedolmen</groupId>
+		<artifactId>appstore-core</artifactId>
+	</dependency>
+	
+	<dependency>
+		<groupId>${alfresco.groupId}</groupId>
+		<artifactId>alfresco-repository</artifactId>
+	</dependency>
+	
+	<dependency>
+		<groupId>${alfresco.groupId}</groupId>
+		<artifactId>alfresco-remote-api</artifactId>
+	</dependency>
+
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+	</dependency>
+	
+  </dependencies>
+  
+</project>

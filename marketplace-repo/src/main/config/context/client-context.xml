@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor 
+	license agreements. See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership. The ASF licenses this file to 
+	You under the Apache License, Version 2.0 (the "License"); you may not use 
+	this file except in compliance with the License. You may obtain a copy of 
+	the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
+	by applicable law or agreed to in writing, software distributed under the 
+	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
+	OF ANY KIND, either express or implied. See the License for the specific 
+	language governing permissions and limitations under the License. -->
+<beans>
+
+	<bean id="mp.ModuleStorageManager" class="org.bluedolmen.alfresco.marketplace.client.ModuleStorageManager">
+		<property name="serviceRegistry" ref="ServiceRegistry" />
+		<property name="moduleManager" ref="mp.ModuleManager" />
+		<property name="transactionHelper" ref="retryingTransactionHelper" />
+		<property name="appStoreRemoteManager" ref="mp.AppStoreRemoteManager" />
+		<property name="repositoryHelper" ref="repositoryHelper" />
+	</bean>
+	
+	<bean id="mp.moduleService" class="org.bluedolmen.alfresco.marketplace.client.ModuleServiceImpl">
+		<property name="serviceRegistry" ref="ServiceRegistry" />
+		<property name="moduleManager" ref="mp.ModuleManager" />
+		<property name="moduleStorageManager" ref="mp.ModuleStorageManager" />
+		<property name="deployerFactory" ref="mp.DeployerFactory" />
+		<property name="appStoreRemoteManager" ref="mp.AppStoreRemoteManager" />
+		<property name="scheduler" ref="schedulerFactory" />
+		<property name="browseOnlyMode" value="${appstore.browseonly}" />
+	</bean>
+	
+	<bean id="mp.AppStoreRemoteManager" class="org.bluedolmen.alfresco.marketplace.client.AppStoreRemoteManager">
+		<property name="connectorService" ref="connector.service" />
+		<property name="credentialVaultProvider" ref="mp.credential.vault.provider" />
+		<property name="properties" ref="global-properties" />
+	</bean>
+
+    <bean id="mp.ModuleServiceScript" parent="baseJavaScriptExtension" class="org.bluedolmen.alfresco.marketplace.client.ModuleServiceScript" >
+    	<property name="extensionName" value="AppStoreService" />
+    	<property name="moduleService" ref="mp.moduleService" />
+    	<property name="appStoreRemoteManager" ref="mp.AppStoreRemoteManager" />
+		<property name="serviceRegistry" ref="ServiceRegistry" />
+    </bean>
+
+	<bean id="mp.ModuleWebscript" 
+		class="org.bluedolmen.alfresco.marketplace.client.ModuleWebscript"
+		abstract="true"
+		parent="webscript">
+    	<property name="moduleService" ref="mp.moduleService" />
+	</bean>
+	
+	<bean id="webscript.org.bluedolmen.alfresco.marketplace.deploy.post" 
+		class="org.bluedolmen.alfresco.marketplace.client.DeployModulePost"
+		parent="mp.ModuleWebscript">
+	</bean>
+
+	<bean id="webscript.org.bluedolmen.alfresco.marketplace.upload-local-module.post" 
+		class="org.bluedolmen.alfresco.marketplace.client.UploadLocalModulePost"
+		parent="webscript">
+		<property name="moduleStorageManager" ref="mp.ModuleStorageManager"/>
+	</bean>
+	
+	<bean id="webscript.org.bluedolmen.alfresco.marketplace.undeploy.post" 
+		class="org.bluedolmen.alfresco.marketplace.client.UndeployModulePost"
+		parent="mp.ModuleWebscript">
+	</bean>
+	
+	<bean id="webscript.org.bluedolmen.alfresco.marketplace.deploy.get" 
+		class="org.bluedolmen.alfresco.marketplace.client.DeployStateGet"
+		parent="mp.ModuleWebscript">
+	</bean>
+	
+	<bean id="webscript.org.bluedolmen.yamma.resources.get" 
+		  parent="bluedolmen.webscripts.basePathDynResourceGet" >
+				
+        <property name="alfrescoResourceResolver">
+        	<bean class="org.bluedolmen.alfresco.resources.AlfrescoResourceResolver" 
+        		parent="bluedolmen.resources.alfrescoResourceResolver">
+        	
+		        <!-- These XPath paths are relative to the root company_home -->  
+		        <property name="resourceRepositoryLocations">
+			        <list>
+			 	       <value>app:dictionary/cm:bluedolmen/cm:resources</value>
+			        </list>
+		        </property>
+		        
+        	</bean>
+        </property>
+        
+	</bean>
+	
+	<bean id="webscript.org.bluedolmen.alfresco.marketplace.remote-login.post" 
+		class="org.bluedolmen.alfresco.marketplace.client.RemoteAppStoreLoginPost"
+		parent="webscript">
+		<property name="appStoreRemoteManager" ref="mp.AppStoreRemoteManager" />
+	</bean>
+
+	<bean id="webscript.org.bluedolmen.alfresco.marketplace.remote-login.get" 
+		class="org.bluedolmen.alfresco.marketplace.client.RemoteAppStoreLoginGet"
+		parent="webscript">
+		<property name="appStoreRemoteManager" ref="mp.AppStoreRemoteManager" />
+	</bean>
+
+	<bean id="mp.credential.vault.provider" 
+		class="org.springframework.extensions.webscripts.connector.SimpleCredentialVaultProvider">
+		<property name="configService" ref="web.config" />
+	</bean>
+	
+</beans>

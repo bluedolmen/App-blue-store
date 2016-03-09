@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webscript>
+        <shortname>BlueDolmen MarketPlace Remote Login</shortname>
+        <description>Retrieve the remote login-ticket if any already set in the current session</description>
+        <format default="json">argument</format>
+        <authentication>user</authentication>
+        <url>/bluedolmen/mp/remote-login</url>
+        <family>bluedolmen</family>
+</webscript>

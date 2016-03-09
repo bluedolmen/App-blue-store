@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webscript>
+        <shortname>BlueDolmen MarketPlace Module Local Upload</shortname>
+        <description>Used to store a local module before publishing it</description>
+        <format default="json">argument</format>
+        <authentication>admin</authentication>
+        <url>/bluedolmen/mp/upload-local</url>
+        <family>bluedolmen</family>
+</webscript>

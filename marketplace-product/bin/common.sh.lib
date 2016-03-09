@@ -1,0 +1,73 @@
+ROOT_DIR=$(readlink -f ${CURRENT_DIR}/../..)
+WORKSPACE_DIR=${WORKSPACE:-$(readlink -f ${ROOT_DIR}/..)}
+
+XPATH=xpath
+SVN=svn
+MAVEN=mvn
+MVN_OPTS=""
+
+BIN_DIR=bin
+APPLY_AMP=${APPLY_AMP:-${CURRENT_DIR}/apply_amp.sh}
+
+TODAY=$(date +%Y%m%d)
+
+#########################################################
+# UTILITIES
+#########################################################
+
+function exit_with_failure() {
+	echo "${1:-Error}" 1>&2
+	exit -1
+}
+
+#
+# function svn_rev(root_dir)
+#
+# @param root_dir: root-directory to search recursively 
+#
+function svn_rev() {
+
+	if [ ! "$(which ${XPATH})" ]; then return; fi
+	
+	local root_dir=${1:-${WORKSPACE_DIR}}
+
+	for project in $(ls -d "${root_dir}"/*); do
+		svn_rev_file="${project}.rev.xml"
+		${SVN} info --xml -R "${project}" > "${svn_rev_file}"
+		svn_rev=$(${XPATH} -q -e '//entry/commit/@revision' "${svn_rev_file}" | cut -f 2 -d '=' | tr -d '"' | sort -n | tail -1)
+		echo ${svn_rev} >> svn_revs.txt
+	done
+	
+	local svnrev=$(cat svn_revs.txt | sort -n | tail -1)
+	echo ${svnrev}
+	
+}
+
+#
+# function keep_last_n_files(publish_dir)
+#
+# @param publish_dir: the directory to operate on 
+#
+function keep_last_n_files() {
+
+	local publish_dir="$1"
+	local nb_files=${2:-5}
+	
+	if [ ! -d "${publish_dir}" ]; then return; fi
+	
+	rm -f $(ls -t "${publish_dir}"/*.tar.gz | awk -v nb=${nb_files} 'NR>nb') # Only keep nb_files versions
+	
+}
+
+#########################################################
+# PREPARATION
+#########################################################
+
+# Make apply_amp.sh executable
+test -e ${APPLY_AMP} || exit_with_failure "Cannot find ${APPLY_AMP} script"
+chmod +x ${APPLY_AMP}
+
+# Clean-up root-dir target (build) directory
+cd ${ROOT_DIR}
+test -d "${ROOT_DIR}/target" && rm -rf "${ROOT_DIR}/target"
+

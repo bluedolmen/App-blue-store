@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webscript>
+        <shortname>BlueDolmen Repository Messages Retrieving</shortname>
+        <format default="">argument</format>
+        <authentication>user</authentication>
+        <url>/bluedolmen/api/messages/content</url>
+        <family>bluedolmen</family>
+</webscript>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webscript>
+        <shortname>BlueDolmen MarketPlace Module Undeployment</shortname>
+        <format default="json">argument</format>
+        <authentication>admin</authentication>
+        <url>/bluedolmen/mp/undeploy/{moduleId}</url>
+        <url>/bluedolmen/mp/uninstall/{moduleId}</url>
+        <family>bluedolmen</family>
+</webscript>

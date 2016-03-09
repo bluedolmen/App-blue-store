@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webscript>
+        <shortname>BlueDolmen MarketPlace</shortname>
+        <format default="json">any</format>
+        <authentication>admin</authentication>
+        <url>/bluedolmen/mp/reload</url>
+        <family>bluedolmen</family>
+</webscript>
